@@ -10,4 +10,5 @@ We all need to learn, so maybe we can learn to trade.
 
 * [X] ~~*Colorize questions*~~ [2020-10-06]
 * [X] ~~*Minutes left instead of a deadline*~~ [2020-10-06]
+* [ ] Validate and register answer results.
 * [ ] Add several quizzes and expand questions.
