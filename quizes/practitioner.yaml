@@ -1,0 +1,67 @@
+description: A practice exam for the AWS Certified Cloud Practioner (CFL-01) Exam.
+duration_minutes: 40
+questions:
+- item:
+  title: What is the other pillar of the Five Pillars of Well-Architected Framework?
+  type: missing_item
+  choose_items:
+  - Global Pillar
+  - Operational Security Pillar
+  - Speed Pillar
+  - Competitive Optomization Pillar
+  - Compliance Pillar
+  valid_items:
+  - Security Pillar
+  - Operational Excellence Pillar
+  - Reliability Pillar
+  - Cost Optomization Pillar
+  - Performance Efficiency Pillar
+  notes: >
+    ### Operational Excellence Pillar
+    The operational excellence pillar focuses on running and monitoring systems to deliver business value, and continually improving processes and procedures. Key topics include automating changes, responding to events, and defining standards to manage daily operations.
+    |
+    ### Security Pillar
+    The security pillar focuses on protecting information and systems. Key topics include confidentiality and integrity of data, identifying and managing who can do what with privilege management, protecting systems, and establishing controls to detect security events.
+    |
+    ### Reliability Pillar
+    The reliability pillar focuses on ensuring a workload performs its intended function correctly and consistently when it’s expected to. A resilient workload quickly recovers from failures to meet business and customer demand. Key topics include distributed system design, recovery planning, and how to handle change.
+    |
+    ### Performance Efficiency Pillar
+    The performance efficiency pillar focuses on using IT and computing resources efficiently. Key topics include selecting the right resource types and sizes based on workload requirements, monitoring performance, and making informed decisions to maintain efficiency as business needs evolve.
+    |
+    ### Cost Optimization Pillar
+    The cost optimization pillar focuses on avoiding unnecessary costs. Key topics include understanding and controlling where money is being spent, selecting the most appropriate and right number of resource types, analyzing spend over time, and scaling to meet business needs without overspending.
+    |
+    [AWS Well-Architected](https://aws.amazon.com/architecture/well-architected/?wa-lens-whitepapers.sort-by=item.additionalFields.sortDate&wa-lens-whitepapers.sort-order=desc)
+- item:
+  title: Valid Subnet CIDR
+  type: choose_items
+  choose_items:
+  - 10.0.0.0/8
+  - 10.0.0.0/15
+  - 10.0.0.0/28
+  - 10.0.0.0/29
+  valid_items:
+  - 10.0.0.0/28
+  - 10.0.0.0/16
+- item:
+  title: Which of the following are true of a default VPC? (select TWO)
+  type: choose_items
+  choose_items:
+  - A default VPC spans multiple regions.
+  - By default, each VPC is available to one AWS account.
+  - AWS creates a default VPC in each Availability Zone.
+  - AWS creates a default VPC in each Region.
+  valid_items:
+  - By default, each VPC is available to one AWS account.
+  - AWS creates a default VPC in each Region.
+- item:
+  title: Which of the following AWS services provides a security management tool to configure your AWS WAF rules accross your accounts?
+  type: choose_items
+  choose_items:
+  - AWS Trusted Advisor
+  - AWS Firewall Manager
+  - Amazon Guard Duty
+  - AWS Resource Access Manager
+  valid_items:
+  - AWS Firewall Manager
