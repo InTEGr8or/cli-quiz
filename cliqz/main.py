@@ -9,7 +9,7 @@ import json
 # missing_items type displays all but one of the valid items in the question, and the excluded valid_item plus choose_items in the choices.
 # choose_items type displays all the valid items plus the choose_items in the choices.
 
-# [https://towardsdatascience.com/how-to-build-and-publish-command-line-applications-with-python-96065049abc1](https://towardsdatascience.com/how-to-build-and-publish-command-line-applications-with-python-96065049abc1)
+# [How to Build And Publish Command-Line Applications With Python](https://towardsdatascience.com/how-to-build-and-publish-command-line-applications-with-python-96065049abc1)
 
 @click.group()
 @click.version_option("1.0.0")
@@ -36,6 +36,16 @@ def look_up(file_name):
     print("Contains " + str(quiz.count) + " items.")
     pass
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 class Quiz:
     count = 0
     questions = []
@@ -48,7 +58,8 @@ class Quiz:
         self.deadline = datetime.datetime.now() + datetime.timedelta(0, 60 * quiz['duration_minutes'])
         for i in range(self.count):
             self.questions[i]['valid'] = None
-            self.questions[i]['prompt'] = self.questions[i]['title'] + '\n' + '\n'.join(str(x) for x in self.questions[i]['choose_items'])
+            choose_items = '\n'.join(str(x) for x in self.questions[i]['choose_items'])
+            self.questions[i]['prompt'] = f"{bcolors.WARNING}{self.questions[i]['title']}{bcolors.ENDC}\n\n{choose_items}\n{bcolors.WARNING}Answer{bcolors.ENDC}"
         pass
 
     def ask_next(self):
@@ -80,7 +91,8 @@ def take(file_name):
     quiz = get_quiz(file_name)
     while quiz.ask_next():
         outstanding_items = [question for question in quiz.questions if question['valid'] == None]
-        print("There are " + str(len(outstanding_items)) + " items remaining and due by " + quiz.deadline.strftime("%H:%M:%S") + '\n')
+        t_remaining = str(quiz.deadline - datetime.datetime.now()).split('.')[0]
+        print(f"{bcolors.OKBLUE}There are {str(len(outstanding_items))} items remaining and {t_remaining} time remaining{bcolors.ENDC}.\n")
 
 if __name__ == '__main__':
     args = sys.argv

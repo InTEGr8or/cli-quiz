@@ -8,6 +8,6 @@ We all need to learn, so maybe we can learn to trade.
 
 ## Roadmap
 
-* [ ] Colorize questions
-* [ ] Minutes left instead of a deadline
+* [X] ~~*Colorize questions*~~ [2020-10-06]
+* [X] ~~*Minutes left instead of a deadline*~~ [2020-10-06]
 * [ ] Add several quizzes and expand questions.

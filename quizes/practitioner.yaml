@@ -34,7 +34,7 @@ questions:
     |
     [AWS Well-Architected](https://aws.amazon.com/architecture/well-architected/?wa-lens-whitepapers.sort-by=item.additionalFields.sortDate&wa-lens-whitepapers.sort-order=desc)
 - item:
-  title: Valid Subnet CIDR
+  title: Which is a valid subnet CIDR?
   type: choose_items
   choose_items:
   - 10.0.0.0/8
