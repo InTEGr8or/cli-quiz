@@ -9,6 +9,8 @@ import json
 # missing_items type displays all but one of the valid items in the question, and the excluded valid_item plus choose_items in the choices.
 # choose_items type displays all the valid items plus the choose_items in the choices.
 
+# [https://towardsdatascience.com/how-to-build-and-publish-command-line-applications-with-python-96065049abc1](https://towardsdatascience.com/how-to-build-and-publish-command-line-applications-with-python-96065049abc1)
+
 @click.group()
 @click.version_option("1.0.0")
 def main():
