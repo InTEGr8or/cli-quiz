@@ -10,5 +10,6 @@ We all need to learn, so maybe we can learn to trade.
 
 * [X] ~~*Colorize questions*~~ [2020-10-06]
 * [X] ~~*Minutes left instead of a deadline*~~ [2020-10-06]
-* [ ] Validate and register answer results.
+* [X] ~~*Validate and register answer results.*~~ [2020-10-06]
+* [ ] Tally a list of results at the end of the test.
 * [ ] Add several quizzes and expand questions.

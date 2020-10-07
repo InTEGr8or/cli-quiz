@@ -49,7 +49,7 @@ questions:
   type: choose_items
   choose_items:
   - A default VPC spans multiple regions.
-  - By default, each VPC is available to one AWS account.
+  - By default each VPC is available to one AWS account.
   - AWS creates a default VPC in each Availability Zone.
   - AWS creates a default VPC in each Region.
   valid_items:

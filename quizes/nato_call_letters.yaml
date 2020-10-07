@@ -1,0 +1,107 @@
+description: flash cards for NATO call-letters
+duration_minutes: 2
+questions:
+- item:
+  title: Word for letter "A"?
+  valid_items:
+  - Alpha
+- item:
+  title: Word for letter "B"?
+  valid_items:
+  - Bravo
+- item:
+  title: Word for letter "C"?
+  valid_items:
+  - Charlie
+- item:
+  title: Word for letter "D"?
+  valid_items:
+  - Delta
+- item:
+  title: Word for letter "E"?
+  valid_items:
+  - Echo
+- item:
+  title: Word for letter "F"?
+  valid_items:
+  - Foxtrot
+- item:
+  title: Word for letter "G"?
+  valid_items:
+  - Golf
+- item:
+  title: Word for letter "H"?
+  valid_items:
+  - Hotel
+- item:
+  title: Word for letter "I"?
+  valid_items:
+  - India
+- item:
+  title: Word for letter "J"?
+  valid_items:
+  - Juliet
+- item:
+  title: Word for letter "K"?
+  valid_items:
+  - Kilo
+- item:
+  title: Word for letter "L"?
+  valid_items:
+  - Lima
+- item:
+  title: Word for letter "M"?
+  valid_items:
+  - Mike
+- item:
+  title: Word for letter "N"?
+  valid_items:
+  - Nancy
+- item:
+  title: Word for letter "O"?
+  valid_items:
+  - Oscar
+- item:
+  title: Word for letter "P"?
+  valid_items:
+  - Papa
+- item:
+  title: Word for letter "Q"?
+  valid_items:
+  - Quebec
+- item:
+  title: Word for letter "R"?
+  valid_items:
+  - Romeo
+- item:
+  title: Word for letter "S"?
+  valid_items:
+  - Siera
+- item:
+  title: Word for letter "T"?
+  valid_items:
+  - Tango
+- item:
+  title: Word for letter "U"?
+  valid_items:
+  - Uniform
+- item:
+  title: Word for letter "V"?
+  valid_items:
+  - Victor
+- item:
+  title: Word for letter "W"?
+  valid_items:
+  - Whiskey
+- item:
+  title: Word for letter "X"?
+  valid_items:
+  - X-Ray
+- item:
+  title: Word for letter "Y"?
+  valid_items:
+  - Yanke
+- item:
+  title: Word for letter "Z"?
+  valid_items:
+  - Zulu

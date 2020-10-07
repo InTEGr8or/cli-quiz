@@ -58,7 +58,10 @@ class Quiz:
         self.deadline = datetime.datetime.now() + datetime.timedelta(0, 60 * quiz['duration_minutes'])
         for i in range(self.count):
             self.questions[i]['valid'] = None
-            choose_items = '\n'.join(str(x) for x in self.questions[i]['choose_items'])
+            if('choose_items' in self.questions[i]):
+                choose_items = '\n'.join(str(x) for x in self.questions[i]['choose_items'])
+            else:
+                choose_items = ""
             self.questions[i]['prompt'] = f"{bcolors.WARNING}{self.questions[i]['title']}{bcolors.ENDC}\n\n{choose_items}\n{bcolors.WARNING}Answer{bcolors.ENDC}"
         pass
 
@@ -68,9 +71,16 @@ class Quiz:
         if len(questions) > 0:
             question = questions[0]
             response = click.prompt(question['prompt'])
-            print("Response: " + response)
-            print("Valid Items: " + json.dumps(question['valid_items']))
-            question['valid'] = True
+            extra_answers = [x for x in response.split(';') if x not in question['valid_items']]
+            extra_validators = [x for x in question['valid_items'] if x not in response.split(';')]
+            validated = len(extra_answers) == 0 and len(extra_validators) == 0
+            if(validated):
+                print(f"{bcolors.OKGREEN}CORRECT{bcolors.ENDC}")
+                question['valid'] = True
+            else:
+                print(f"{bcolors.FAIL}FAIL{bcolors.ENDC}")
+                print("Valid Items: " + json.dumps(question['valid_items']))
+                question['valid'] = False
             return True
         else:
             return False
