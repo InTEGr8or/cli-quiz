@@ -4,7 +4,12 @@ I wanted to knock this out in a day to solve a problem I had no time budgeted fo
 
 The other quizzes I use, like Anki-droid and Udemy quizzes are not open-source-ish enough. There is some difficulty adding question sets and types. I want questions in a data format that is more verifiable and standard.
 
-We all need to learn, so maybe we can learn to trade.
+We all need to learn, so maybe we can learn to trade our learning and the product of our learning.
+
+## Inspiration
+
+I was inspired yesterday by this article: [How to Build And Publish Command-Line Applications With Python](https://towardsdatascience.com/how-to-build-and-publish-command-line-applications-with-python-96065049abc1)
+
 
 ## Roadmap
 
@@ -15,3 +20,4 @@ We all need to learn, so maybe we can learn to trade.
 * [X] ~~*Tally a list of results at the end of the test.*~~ [2020-10-07]
 * [ ] Add code tests to the project
 * [ ] Add several quizzes and expand questions.
+* [ ] Move quizzes into an open-source repo of some modern type.

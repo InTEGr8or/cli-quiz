@@ -1,5 +1,6 @@
 description: flash cards for NATO call-letters
 duration_minutes: 2
+max_questions: 10
 questions:
 - item:
   type: text
