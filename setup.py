@@ -18,7 +18,7 @@ install_requires = [x.strip() for x in all_reqs if ('git+' not in x) and (
 dependency_links = [x.strip().replace('git+', '') for x in all_reqs \
                     if 'git+' not in x]
 setup (
- name = 'cli-quiz',
+ name = 'cliqz',
  description = 'A simple commandline app for quizes',
  version = '1.0.0',
  packages = find_packages(), # list of all packages
@@ -26,15 +26,15 @@ setup (
  python_requires='>=2.7', # any python greater than 2.7
  entry_points='''
         [console_scripts]
-        cli-quiz=__main__:main
+        cliqz=cliqz.main:main
     ''',
  author="Mark Stouffer",
  keyword="cli, quiz, exam, test",
  long_description=README,
  long_description_content_type="text/markdown",
  license='MIT',
- url='https://github.com/InTEGr8or/cli-quiz',
- download_url='https://github.com/InTEGr8or/cli-quiz/archive/master.zip',
+ url='https://github.com/InTEGr8or/cliqz',
+ download_url='https://github.com/InTEGr8or/cliqz/archive/master.zip',
   dependency_links=dependency_links,
   author_email='mark.stouffer@verys.com',
   classifiers=[

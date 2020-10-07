@@ -1,4 +1,4 @@
-# Cli-Quiz Intro
+# Cliqz Intro
 
 I wanted to knock this out in a day to solve a problem I had no time budgeted for. Python was the perfect option but I'm a n00b to it, so be cruel.
 
