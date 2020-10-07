@@ -24,7 +24,8 @@ def search(filter):
     for subdir, dirs, files in os.walk('./quizes/'):
         for file in files:
             if(".yaml" in file or ".yml" in file):
-                print(file)
+                if(filter == None or filter in file):
+                    print(file)
     pass
 
 @main.command()
@@ -59,11 +60,39 @@ class Quiz:
         for i in range(self.count):
             self.questions[i]['valid'] = None
             if('choose_items' in self.questions[i]):
-                choose_items = '\n'.join(str(x) for x in self.questions[i]['choose_items'])
+                choose_items = '\n'.join(f"{i}: {str(x)}" for i,x in enumerate(self.questions[i]['choose_items']))
             else:
                 choose_items = ""
-            self.questions[i]['prompt'] = f"{bcolors.WARNING}{self.questions[i]['title']}{bcolors.ENDC}\n\n{choose_items}\n{bcolors.WARNING}Answer{bcolors.ENDC}"
+            self.questions[i]['prompt'] = self.create_prompt(self.questions[i], choose_items)
         pass
+
+    def create_prompt(self, question, choose_items):
+        prompt = ""
+        prompt = f"{bcolors.WARNING}{question['title']}{bcolors.ENDC}\n\n{choose_items}\n{bcolors.WARNING}Answer{bcolors.ENDC}"
+        return prompt
+
+    def validate(self, question, response):
+        """Handle response validation based on question type"""
+        validated = False
+        if question['type'] == "text":
+            response_items = response.split(',')
+            print("Response Items: " + json.dumps(response_items))
+            extra_answers = [x for x in response_items if x not in question['valid_items']]
+            extra_validators = [x for x in question['valid_items'] if x not in response_items]
+            validated = len(extra_answers) == 0 and len(extra_validators) == 0
+        elif question['type'] == "missing_item":
+            response_items = [x for i,x in enumerate(question['choose_items']) if str(i) in response.split(',')]
+            print("Response Items: " + json.dumps(response_items))
+            extra_answers = [x for x in response_items if x not in question['valid_items']]
+            extra_validators = [x for x in question['valid_items'] if x not in response_items]
+            validated = len(extra_answers) == 0 and len(extra_validators) == 0
+        elif question['type'] == "choose_items":
+            response_items = [x for i,x in enumerate(question['choose_items']) if str(i) in response.split(',')]
+            print("Response Items: " + json.dumps(response_items))
+            extra_answers = [x for x in response_items if x not in question['valid_items']]
+            extra_validators = [x for x in question['valid_items'] if x not in response_items]
+            validated = len(extra_answers) == 0 and len(extra_validators) == 0
+        return validated
 
     def ask_next(self):
         """Ask a single unanswered test question and register the response"""
@@ -71,9 +100,7 @@ class Quiz:
         if len(questions) > 0:
             question = questions[0]
             response = click.prompt(question['prompt'])
-            extra_answers = [x for x in response.split(';') if x not in question['valid_items']]
-            extra_validators = [x for x in question['valid_items'] if x not in response.split(';')]
-            validated = len(extra_answers) == 0 and len(extra_validators) == 0
+            validated = self.validate(question, response)
             if(validated):
                 print(f"{bcolors.OKGREEN}CORRECT{bcolors.ENDC}")
                 question['valid'] = True
@@ -92,7 +119,8 @@ def get_quiz(file_name):
             quiz = Quiz(yaml.load(file, Loader=yaml.FullLoader))
             return quiz
     else:
-        click.echo("Quiz file not found")
+        click.echo(f"{bcolors.FAIL}Quiz file not found:{bcolors.ENDC} {file_name}")
+        sys.exit()
 
 @main.command()
 @click.argument('file_name', required=True)
@@ -103,6 +131,9 @@ def take(file_name):
         outstanding_items = [question for question in quiz.questions if question['valid'] == None]
         t_remaining = str(quiz.deadline - datetime.datetime.now()).split('.')[0]
         print(f"{bcolors.OKBLUE}There are {str(len(outstanding_items))} items remaining and {t_remaining} time remaining{bcolors.ENDC}.\n")
+    valid_answers = [question for question in quiz.questions if question['valid'] == True]
+    percent = len(valid_answers) / len(quiz.questions)
+    print(f"{bcolors.OKGREEN}You got {len(valid_answers)} out of {len(quiz.questions)} questions.{bcolors.ENDC} Percent: {percent}")
 
 if __name__ == '__main__':
     args = sys.argv

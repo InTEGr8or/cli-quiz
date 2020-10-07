@@ -53,7 +53,7 @@ questions:
   - AWS creates a default VPC in each Availability Zone.
   - AWS creates a default VPC in each Region.
   valid_items:
-  - By default, each VPC is available to one AWS account.
+  - By default each VPC is available to one AWS account.
   - AWS creates a default VPC in each Region.
 - item:
   title: Which of the following AWS services provides a security management tool to configure your AWS WAF rules accross your accounts?
