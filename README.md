@@ -24,5 +24,6 @@ I was inspired yesterday by this article: [How to Build And Publish Command-Line
 * [ ] Variation in handling of various test types not property implementd for missing_item.
 
 <!-- ```ps1
+ip install -e ./
 twine upload dist/*
 ``` -->

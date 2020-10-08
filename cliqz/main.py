@@ -23,7 +23,11 @@ def load_cliqzdex(url):
     response = requests.get(url)
     return response.text
 
-CONFIG = load_config(f'{ROOT_DIR}/configuration.yaml')
+CONFIG = {
+    "cliqzdex_url": "https://raw.githubusercontent.com/InTEGr8or/cliqzdex/main/index.yaml",
+    "quiz_url": "https://raw.githubusercontent.com/InTEGr8or/cliqzdex/main/quizzes/"
+}
+
 CLIQZDEX = load_cliqzdex(CONFIG['cliqzdex_url'])
 cliqdex_url_array = CONFIG['cliqzdex_url'].split('/')
 del cliqdex_url_array[-1]
@@ -43,8 +47,9 @@ def search(filter):
     """Search quizes"""
     print(f"{bcolors.WARNING}Searching in path: {bcolors.ENDC}" + CONFIG['cliqzdex_url'])
     for index, line in enumerate(CLIQZDEX.splitlines()):
-        print(index, str.replace(line, CLIQZDEX_REPLACE, ""))
-
+        line =str.replace(line, CLIQZDEX_REPLACE, "")
+        if(len(line)):
+            print(index, line)
     pass
 
 @main.command()
