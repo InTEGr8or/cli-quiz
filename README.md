@@ -20,4 +20,9 @@ I was inspired yesterday by this article: [How to Build And Publish Command-Line
 * [X] ~~*Tally a list of results at the end of the test.*~~ [2020-10-07]
 * [ ] Add code tests to the project
 * [ ] Add several quizzes and expand questions.
-* [ ] Move quizzes into an open-source repo of some modern type.
+* [X] ~~*Move quizzes into an open-source repo of some modern type.*~~ [2020-10-08]
+* [ ] Variation in handling of various test types not property implementd for missing_item.
+
+<!-- ```ps1
+twine upload dist/*
+``` -->

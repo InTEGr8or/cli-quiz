@@ -5,12 +5,34 @@ import yaml
 import os
 import random
 import json
+import requests
 
 # missing_items type displays all but one of the valid items in the question, and the excluded valid_item plus choose_items in the choices.
 # choose_items type displays all the valid items plus the choose_items in the choices.
 
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+QUIZ_DIR = f'{ROOT_DIR}/quizzes/'
+
+
+def load_config(file_path):
+    with open(file_path) as file:
+        config = yaml.load(file, Loader=yaml.FullLoader)
+        return config
+
+def load_cliqzdex(url):
+    response = requests.get(url)
+    return response.text
+
+CONFIG = load_config(f'{ROOT_DIR}/configuration.yaml')
+CLIQZDEX = load_cliqzdex(CONFIG['cliqzdex_url'])
+cliqdex_url_array = CONFIG['cliqzdex_url'].split('/')
+del cliqdex_url_array[-1]
+CLIQZDEX_REPLACE = '/'.join(cliqdex_url_array)
+CLIQZDEX_REPLACE = CONFIG['quiz_url']
+
+
 @click.group()
-@click.version_option("1.0.0")
+@click.version_option("0.1.1")
 def main():
     """An open source quiz script"""
     pass
@@ -19,11 +41,10 @@ def main():
 @click.argument('filter', required=False)
 def search(filter):
     """Search quizes"""
-    for subdir, dirs, files in os.walk('./quizes/'):
-        for file in files:
-            if(".yaml" in file or ".yml" in file):
-                if(filter == None or filter in file):
-                    print(file)
+    print(f"{bcolors.WARNING}Searching in path: {bcolors.ENDC}" + CONFIG['cliqzdex_url'])
+    for index, line in enumerate(CLIQZDEX.splitlines()):
+        print(index, str.replace(line, CLIQZDEX_REPLACE, ""))
+
     pass
 
 @main.command()
@@ -111,11 +132,11 @@ class Quiz:
             return False
 
 def get_quiz(file_name):
-    file_path = os.getcwd() + os.sep + "quizes" + os.sep + file_name
-    if(os.path.isfile(file_path)):
-        with open(file_path) as file:
-            quiz = Quiz(yaml.load(file, Loader=yaml.FullLoader))
-            return quiz
+    file_path = [line for line in CLIQZDEX.splitlines() if file_name in line][0]
+    if(not file_path == None or len(file_path) > 0):
+        quiz_yaml = requests.get(file_path).text
+        quiz = Quiz(yaml.load(quiz_yaml, Loader=yaml.FullLoader))
+        return quiz
     else:
         click.echo(f"{bcolors.FAIL}Quiz file not found:{bcolors.ENDC} {file_name}")
         sys.exit()
