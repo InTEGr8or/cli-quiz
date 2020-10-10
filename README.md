@@ -10,6 +10,23 @@ We all need to learn, so maybe we can learn to trade our learning and the produc
 
 I was inspired yesterday by this article: [How to Build And Publish Command-Line Applications With Python](https://towardsdatascience.com/how-to-build-and-publish-command-line-applications-with-python-96065049abc1)
 
+## Quiz Schema
+
+The Quiz structure is starting to look like this:
+
+```yaml
+description: string
+duration_minutes: number
+questions:
+- item:
+  title: string
+  type: [missing_items choose_items]
+  choose_items: [text_string_one text_string_two text_string_three]
+  valid_items: [text_string_one]
+  notes: >
+    Multiline text
+```
+
 
 ## Roadmap
 
@@ -21,9 +38,13 @@ I was inspired yesterday by this article: [How to Build And Publish Command-Line
 * [ ] Add code tests to the project
 * [ ] Add several quizzes and expand questions.
 * [X] ~~*Move quizzes into an open-source repo of some modern type.*~~ [2020-10-08]
-* [ ] Variation in handling of various test types not property implementd for missing_item.
+* [ ] Variation in handling of various test types not property implemented for missing_item.
 
 <!-- ```ps1
-ip install -e ./
-twine upload dist/*
+pip install -e ./
+
+
+rm build/*; rm cliqz.egg-info/*; rm dist/*;
+python setup.py sdist bdist_wheel
+python -m twine upload dist/*
 ``` -->

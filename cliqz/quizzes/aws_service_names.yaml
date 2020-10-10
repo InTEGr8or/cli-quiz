@@ -3,228 +3,228 @@ description: >
 duration: 0
 questions: []
 services:
-Accessanalyzer
-ACM
-Acm-Pca
-Alexaforbusiness
-Amplify
-Apigateway
-Apigatewaymanagementapi
-Apigatewayv2
-Appconfig
-Application-Autoscaling
-Application-Insights
-Appmesh
-Appstream
-Appsync
-Athena
-Autoscaling
-Autoscaling-Plans
-Backup
-Batch
-Budgets
-CE
-Chime
-Cloud9
-Clouddirectory
-Cloudformation
-Cloudfront
-Cloudhsm
-Cloudhsmv2
-Cloudsearch
-Cloudsearchdomain
-Cloudtrail
-Cloudwatch
-Codebuild
-Codecommit
-Codeguru-Reviewer
-Codeguruprofiler
-Codepipeline
-Codestar
-Codestar-Connections
-Codestar-Notifications
-Cognito-Identity
-Cognito-Idp
-Cognito-Sync
-Comprehend
-Comprehendmedical
-Compute-Optimizer
-Connect
-Connectparticipant
-CUR
-Dataexchange
-Datapipeline
-Datasync
-DAX
-Detective
-Devicefarm
-Directconnect
-Discovery
-DLM
-DMS
-Docdb
-DS
-Dynamodb
-Dynamodbstreams
-EBS
-EC2
-EC2-Instance-Connect
-ECR
-ECS
-EFS
-EKS
-Elastic-Inference
-Elasticache
-Elasticbeanstalk
-Elastictranscoder
-ELB
-Elbv2
-EMR
-ES
-Events
-Firehose
-FMS
-Forecast
-Forecastquery
-Frauddetector
-FSX
-Gamelift
-Glacier
-Globalaccelerator
-Glue
-Greengrass
-Groundstation
-Guardduty
-Health
-IAM
-Imagebuilder
-Importexport
-Inspector
-IoT
-IoT-Data
-IoT-Jobs-Data
-IoT1click-Devices
-IoT1click-Projects
-IoTAnalytics
-IoTEvents
-IoTEvents-Data
-IoTSecuretunneling
-IoTThingsgraph
-Kafka
-Kendra
-Kinesis
-Kinesis-Video-Archived-Media
-Kinesis-Video-Media
-Kinesis-Video-Signaling
-Kinesisanalytics
-Kinesisanalyticsv2
-Kinesisvideo
-KMS
-Lakeformation
-Lambda
-Lex-Models
-Lex-Runtime
-License-Manager
-Lightsail
-Logs
-Machinelearning
-Macie
-Managedblockchain
-Marketplace-Catalog
-Marketplace-Entitlement
-Marketplacecommerceanalytics
-Mediaconnect
-Mediaconvert
-Medialive
-Mediapackage
-Mediapackage-Vod
-Mediastore
-Mediastore-Data
-Mediatailor
-Meteringmarketplace
-MGH
-Migrationhub-Config
-Mobile
-MQ
-Mturk
-Neptune
-Networkmanager
-Opsworks
-Opsworkscm
-Organizations
-Outposts
-Personalize
-Personalize-Events
-Personalize-Runtime
-PI
-Pinpoint
-Pinpoint-Email
-Pinpoint-Sms-Voice
-Polly
-Pricing
-Qldb
-Qldb-Session
-Quicksight
-RAM
-RDS
-Rds-Data
-Redshift
-Rekognition
-Resource-Groups
-Resourcegroupstaggingapi
-Robomaker
-Route53
-Route53domains
-Route53resolver
-S3control
-Sagemaker
-Sagemaker-A2i-Runtime
-Sagemaker-Runtime
-Savingsplans
-Schemas
-SDB
-Secretsmanager
-Securityhub
-Serverlessrepo
-Service-Quotas
-Servicecatalog
-Servicediscovery
-SES
-Sesv2
-Shield
-Signer
-SMS
-Snowball
-SNS
-SQS
-SSM
-SSO
-Sso-Oidc
-Stepfunctions
-Storagegateway
-STS
-Support
-SWF
-Synthetics
-Textract
-Transcribe
-Transfer
-Translate
-WAF
-Waf-Regional
-Wafv2
-Workdocs
-Worklink
-Workmail
-Workmailmessageflow
-Workspaces
-Xray
-S3api
-S3
-DDB
-Configure
-Deploy
-Configservice
-Opsworks-Cm
-History
-ClI-Dev
+- Accessanalyzer
+- ACM
+- Acm-Pca
+- Alexaforbusiness
+- Amplify
+- Apigateway
+- Apigatewaymanagementapi
+- Apigatewayv2
+- Appconfig
+- Application-Autoscaling
+- Application-Insights
+- Appmesh
+- Appstream
+- Appsync
+- Athena
+- Autoscaling
+- Autoscaling-Plans
+- Backup
+- Batch
+- Budgets
+- CE
+- Chime
+- Cloud9
+- Clouddirectory
+- Cloudformation
+- Cloudfront
+- Cloudhsm
+- Cloudhsmv2
+- Cloudsearch
+- Cloudsearchdomain
+- Cloudtrail
+- Cloudwatch
+- Codebuild
+- Codecommit
+- Codeguru-Reviewer
+- Codeguruprofiler
+- Codepipeline
+- Codestar
+- Codestar-Connections
+- Codestar-Notifications
+- Cognito-Identity
+- Cognito-Idp
+- Cognito-Sync
+- Comprehend
+- Comprehendmedical
+- Compute-Optimizer
+- Connect
+- Connectparticipant
+- CUR
+- Dataexchange
+- Datapipeline
+- Datasync
+- DAX
+- Detective
+- Devicefarm
+- Directconnect
+- Discovery
+- DLM
+- DMS
+- Docdb
+- DS
+- Dynamodb
+- Dynamodbstreams
+- EBS
+- EC2
+- EC2-Instance-Connect
+- ECR
+- ECS
+- EFS
+- EKS
+- Elastic-Inference
+- Elasticache
+- Elasticbeanstalk
+- Elastictranscoder
+- ELB
+- Elbv2
+- EMR
+- ES
+- Events
+- Firehose
+- FMS
+- Forecast
+- Forecastquery
+- Frauddetector
+- FSX
+- Gamelift
+- Glacier
+- Globalaccelerator
+- Glue
+- Greengrass
+- Groundstation
+- Guardduty
+- Health
+- IAM
+- Imagebuilder
+- Importexport
+- Inspector
+- IoT
+- IoT-Data
+- IoT-Jobs-Data
+- IoT1click-Devices
+- IoT1click-Projects
+- IoTAnalytics
+- IoTEvents
+- IoTEvents-Data
+- IoTSecuretunneling
+- IoTThingsgraph
+- Kafka
+- Kendra
+- Kinesis
+- Kinesis-Video-Archived-Media
+- Kinesis-Video-Media
+- Kinesis-Video-Signaling
+- Kinesisanalytics
+- Kinesisanalyticsv2
+- Kinesisvideo
+- KMS
+- Lakeformation
+- Lambda
+- Lex-Models
+- Lex-Runtime
+- License-Manager
+- Lightsail
+- Logs
+- Machinelearning
+- Macie
+- Managedblockchain
+- Marketplace-Catalog
+- Marketplace-Entitlement
+- Marketplacecommerceanalytics
+- Mediaconnect
+- Mediaconvert
+- Medialive
+- Mediapackage
+- Mediapackage-Vod
+- Mediastore
+- Mediastore-Data
+- Mediatailor
+- Meteringmarketplace
+- MGH
+- Migrationhub-Config
+- Mobile
+- MQ
+- Mturk
+- Neptune
+- Networkmanager
+- Opsworks
+- Opsworkscm
+- Organizations
+- Outposts
+- Personalize
+- Personalize-Events
+- Personalize-Runtime
+- PI
+- Pinpoint
+- Pinpoint-Email
+- Pinpoint-Sms-Voice
+- Polly
+- Pricing
+- Qldb
+- Qldb-Session
+- Quicksight
+- RAM
+- RDS
+- Rds-Data
+- Redshift
+- Rekognition
+- Resource-Groups
+- Resourcegroupstaggingapi
+- Robomaker
+- Route53
+- Route53domains
+- Route53resolver
+- S3control
+- Sagemaker
+- Sagemaker-A2i-Runtime
+- Sagemaker-Runtime
+- Savingsplans
+- Schemas
+- SDB
+- Secretsmanager
+- Securityhub
+- Serverlessrepo
+- Service-Quotas
+- Servicecatalog
+- Servicediscovery
+- SES
+- Sesv2
+- Shield
+- Signer
+- SMS
+- Snowball
+- SNS
+- SQS
+- SSM
+- SSO
+- Sso-Oidc
+- Stepfunctions
+- Storagegateway
+- STS
+- Support
+- SWF
+- Synthetics
+- Textract
+- Transcribe
+- Transfer
+- Translate
+- WAF
+- Waf-Regional
+- Wafv2
+- Workdocs
+- Worklink
+- Workmail
+- Workmailmessageflow
+- Workspaces
+- Xray
+- S3api
+- S3
+- DDB
+- Configure
+- Deploy
+- Configservice
+- Opsworks-Cm
+- History
+- ClI-Dev

@@ -6,6 +6,8 @@ import os
 import random
 import json
 import requests
+# import cliqz.configuration
+
 
 # missing_items type displays all but one of the valid items in the question, and the excluded valid_item plus choose_items in the choices.
 # choose_items type displays all the valid items plus the choose_items in the choices.
@@ -76,24 +78,29 @@ class Quiz:
     questions = []
     description = ""
     deadline = None
+    index = 0
+    max_questions = 200
     def __init__(self, quiz):
         self.count = len(quiz['questions'])
+        if 'max_questions' in quiz: self.max_questions = quiz['max_questions']
         self.questions = random.sample(quiz['questions'], len(quiz['questions']))
         self.description = quiz['description']
         self.deadline = datetime.datetime.now() + datetime.timedelta(0, 60 * quiz['duration_minutes'])
         for i in range(self.count):
             self.questions[i]['valid'] = None
-            if('choose_items' in self.questions[i]):
-                choose_items = '\n'.join(f"{i}: {str(x)}" for i,x in enumerate(self.questions[i]['choose_items']))
-            else:
-                choose_items = ""
-            self.questions[i]['prompt'] = self.create_prompt(self.questions[i], choose_items)
         pass
 
-    def create_prompt(self, question, choose_items):
-        prompt = ""
-        prompt = f"{bcolors.WARNING}{question['title']}{bcolors.ENDC}\n\n{choose_items}\n{bcolors.WARNING}Answer{bcolors.ENDC}"
-        return prompt
+    def get_choices(self, question):
+        # Get numbered list of options
+        # TODO: Make change by question type
+        if('choose_items' in question):
+            choices = '\n'.join(f"{i}: {str(x)}" for i,x in enumerate(question['choose_items']))
+        else:
+            choices = ""
+        return choices
+
+    def get_prompt(self, question):
+        return f"{bcolors.WARNING}{question['title']}{bcolors.ENDC}\n\n{question['choices']}\n{bcolors.WARNING}Answer{bcolors.ENDC}"
 
     def validate(self, question, response):
         """Handle response validation based on question type"""
@@ -121,9 +128,12 @@ class Quiz:
     def ask_next(self):
         """Ask a single unanswered test question and register the response"""
         questions = [question for question in self.questions if question['valid'] == None]
-        if len(questions) > 0:
+        if len(questions) > 0 and self.index < self.max_questions:
             question = questions[0]
-            response = click.prompt(question['prompt'])
+            question['choices'] = self.get_choices(question)
+            prompt = self.get_prompt(question)
+            response = click.prompt(prompt)
+            self.index += 1
             validated = self.validate(question, response)
             if(validated):
                 print(f"{bcolors.OKGREEN}CORRECT{bcolors.ENDC}")
@@ -153,11 +163,12 @@ def take(file_name):
     quiz = get_quiz(file_name)
     while quiz.ask_next():
         outstanding_items = [question for question in quiz.questions if question['valid'] == None]
+        outstanding_count = min([len(outstanding_items), quiz.max_questions - quiz.index])
         t_remaining = str(quiz.deadline - datetime.datetime.now()).split('.')[0]
-        print(f"{bcolors.OKBLUE}There are {str(len(outstanding_items))} items remaining and {t_remaining} time remaining{bcolors.ENDC}.\n")
+        print(f"{bcolors.OKBLUE}There are {str(outstanding_count)} items remaining and {t_remaining} time remaining{bcolors.ENDC}.\n")
     valid_answers = [question for question in quiz.questions if question['valid'] == True]
     percent = len(valid_answers) / len(quiz.questions)
-    print(f"{bcolors.OKGREEN}You got {len(valid_answers)} out of {len(quiz.questions)} questions.{bcolors.ENDC} Percent: {percent}")
+    print(f"{bcolors.OKGREEN}You got {len(valid_answers)} out of {min([len(quiz.questions), quiz.max_questions])} questions.{bcolors.ENDC} Percent: {percent}")
 
 if __name__ == '__main__':
     args = sys.argv
