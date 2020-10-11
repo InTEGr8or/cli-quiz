@@ -21,8 +21,8 @@ questions:
 - item:
   title: string
   type: [missing_items choose_items]
-  choose_items: [text_string_one text_string_two text_string_three]
-  valid_items: [text_string_one]
+  false_choices: [text_string_one text_string_two text_string_three]
+  valid_choices: [text_string_one]
   notes: >
     Multiline text
 ```

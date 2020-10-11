@@ -9,8 +9,8 @@ import requests
 # import cliqz.configuration
 
 
-# missing_items type displays all but one of the valid items in the question, and the excluded valid_item plus choose_items in the choices.
-# choose_items type displays all the valid items plus the choose_items in the choices.
+# missing_items type displays all but one of the valid items in the question, and the excluded valid_choice plus false_choices in the choices.
+# choose_items type displays all the valid items plus the false_choices in the choices.
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 QUIZ_DIR = f'{ROOT_DIR}/quizzes/'
@@ -93,35 +93,39 @@ class Quiz:
     def get_choices(self, question):
         # Get numbered list of options
         # TODO: Make change by question type
-        if('choose_items' in question):
-            choices = '\n'.join(f"{i}: {str(x)}" for i,x in enumerate(question['choose_items']))
-        else:
-            choices = ""
-        return choices
+        if('false_choices' not in question): return ""
+        choice_items = question['false_choices']
+        # leaving randomization of valid_choices in for now, pending implementation of select_valid_count
+        choice_items += random.sample(question['valid_choices'], len(question['valid_choices']))
+        random_choices = random.sample(choice_items, len(choice_items))
+
+        return random_choices
 
     def get_prompt(self, question):
-        return f"{bcolors.WARNING}{question['title']}{bcolors.ENDC}\n\n{question['choices']}\n{bcolors.WARNING}Answer{bcolors.ENDC}"
+        choices = '\n'.join(f"{i}: {str(x)}" for i,x in enumerate(question['choices']))
+        return f"{bcolors.WARNING}{question['title']}{bcolors.ENDC}\n\n{choices}\n{bcolors.WARNING}Answer{bcolors.ENDC}"
 
     def validate(self, question, response):
         """Handle response validation based on question type"""
+        #TODO: If ask_next inserts one valid answer, how does validate() know which one is valid?
         validated = False
         if question['type'] == "text":
             response_items = response.split(',')
-            print("Response Items: " + json.dumps(response_items))
-            extra_answers = [x for x in response_items if x not in question['valid_items']]
-            extra_validators = [x for x in question['valid_items'] if x not in response_items]
+            print("Response Text Items: " + json.dumps(response_items))
+            extra_answers = [x for x in response_items if x not in question['valid_choices']]
+            extra_validators = [x for x in question['valid_choices'] if x not in response_items]
             validated = len(extra_answers) == 0 and len(extra_validators) == 0
         elif question['type'] == "missing_item":
-            response_items = [x for i,x in enumerate(question['choose_items']) if str(i) in response.split(',')]
-            print("Response Items: " + json.dumps(response_items))
-            extra_answers = [x for x in response_items if x not in question['valid_items']]
-            extra_validators = [x for x in question['valid_items'] if x not in response_items]
+            response_items = [x for i,x in enumerate(question['choices']) if str(i) in response.split(',')]
+            print("Response Missing Items: " + json.dumps(response_items))
+            extra_answers = [x for x in response_items if x not in question['valid_choices']]
+            extra_validators = [x for x in question['valid_choices'] if x not in response_items]
             validated = len(extra_answers) == 0 and len(extra_validators) == 0
         elif question['type'] == "choose_items":
-            response_items = [x for i,x in enumerate(question['choose_items']) if str(i) in response.split(',')]
-            print("Response Items: " + json.dumps(response_items))
-            extra_answers = [x for x in response_items if x not in question['valid_items']]
-            extra_validators = [x for x in question['valid_items'] if x not in response_items]
+            response_items = [x for i,x in enumerate(question['choices']) if str(i) in response.split(',')]
+            print("Response Choose Items: " + json.dumps(response_items))
+            extra_answers = [x for x in response_items if x not in question['valid_choices']]
+            extra_validators = [x for x in question['valid_choices'] if x not in response_items]
             validated = len(extra_answers) == 0 and len(extra_validators) == 0
         return validated
 
@@ -140,7 +144,7 @@ class Quiz:
                 question['valid'] = True
             else:
                 print(f"{bcolors.FAIL}FAIL{bcolors.ENDC}")
-                print("Valid Items: " + json.dumps(question['valid_items']))
+                print("Valid Items: " + json.dumps(question['valid_choices']))
                 question['valid'] = False
             return True
         else:

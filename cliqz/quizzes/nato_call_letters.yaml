@@ -5,130 +5,130 @@ questions:
 - item:
   type: text
   title: Word for letter "A"?
-  valid_items:
+  valid_choices:
   - Alpha
 - item:
   type: text
   title: Word for letter "B"?
-  valid_items:
+  valid_choices:
   - Bravo
 - item:
   type: text
   title: Word for letter "C"?
-  valid_items:
+  valid_choices:
   - Charlie
 - item:
   type: text
   title: Word for letter "D"?
-  valid_items:
+  valid_choices:
   - Delta
 - item:
   type: text
   title: Word for letter "E"?
-  valid_items:
+  valid_choices:
   - Echo
 - item:
   type: text
   title: Word for letter "F"?
-  valid_items:
+  valid_choices:
   - Foxtrot
 - item:
   type: text
   title: Word for letter "G"?
-  valid_items:
+  valid_choices:
   - Golf
 - item:
   type: text
   title: Word for letter "H"?
-  valid_items:
+  valid_choices:
   - Hotel
 - item:
   type: text
   title: Word for letter "I"?
-  valid_items:
+  valid_choices:
   - India
 - item:
   type: text
   title: Word for letter "J"?
-  valid_items:
+  valid_choices:
   - Juliet
 - item:
   type: text
   title: Word for letter "K"?
-  valid_items:
+  valid_choices:
   - Kilo
 - item:
   type: text
   title: Word for letter "L"?
-  valid_items:
+  valid_choices:
   - Lima
 - item:
   type: text
   title: Word for letter "M"?
-  valid_items:
+  valid_choices:
   - Mike
 - item:
   type: text
   title: Word for letter "N"?
-  valid_items:
+  valid_choices:
   - Nancy
 - item:
   type: text
   title: Word for letter "O"?
-  valid_items:
+  valid_choices:
   - Oscar
 - item:
   type: text
   title: Word for letter "P"?
-  valid_items:
+  valid_choices:
   - Papa
 - item:
   type: text
   title: Word for letter "Q"?
-  valid_items:
+  valid_choices:
   - Quebec
 - item:
   type: text
   title: Word for letter "R"?
-  valid_items:
+  valid_choices:
   - Romeo
 - item:
   type: text
   title: Word for letter "S"?
-  valid_items:
+  valid_choices:
   - Siera
 - item:
   type: text
   title: Word for letter "T"?
-  valid_items:
+  valid_choices:
   - Tango
 - item:
   type: text
   title: Word for letter "U"?
-  valid_items:
+  valid_choices:
   - Uniform
 - item:
   type: text
   title: Word for letter "V"?
-  valid_items:
+  valid_choices:
   - Victor
 - item:
   type: text
   title: Word for letter "W"?
-  valid_items:
+  valid_choices:
   - Whiskey
 - item:
   type: text
   title: Word for letter "X"?
-  valid_items:
+  valid_choices:
   - X-Ray
 - item:
   type: text
   title: Word for letter "Y"?
-  valid_items:
+  valid_choices:
   - Yankee
 - item:
   type: text
   title: Word for letter "Z"?
-  valid_items:
+  valid_choices:
   - Zulu

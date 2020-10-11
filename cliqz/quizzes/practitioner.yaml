@@ -4,13 +4,13 @@ questions:
 - item:
   title: What is the other pillar of the Five Pillars of Well-Architected Framework?
   type: missing_item
-  choose_items:
+  false_choices:
   - Global Pillar
   - Operational Security Pillar
   - Speed Pillar
   - Competitive Optomization Pillar
   - Compliance Pillar
-  valid_items:
+  valid_choices:
   - Security Pillar
   - Operational Excellence Pillar
   - Reliability Pillar
@@ -36,43 +36,43 @@ questions:
 - item:
   title: Which is a valid subnet CIDR?
   type: choose_items
-  choose_items:
+  false_choices:
   - 10.0.0.0/8
   - 10.0.0.0/15
   - 10.0.0.0/28
   - 10.0.0.0/29
-  valid_items:
+  valid_choices:
   - 10.0.0.0/28
   - 10.0.0.0/16
 - item:
   title: Which of the following are true of a default VPC? (select TWO)
   type: choose_items
-  choose_items:
+  false_choices:
   - A default VPC spans multiple regions.
   - By default each VPC is available to one AWS account.
   - AWS creates a default VPC in each Availability Zone.
   - AWS creates a default VPC in each Region.
-  valid_items:
+  valid_choices:
   - By default each VPC is available to one AWS account.
   - AWS creates a default VPC in each Region.
 - item:
   title: Which of the following AWS services provides a security management tool to configure your AWS WAF rules accross your accounts?
   type: choose_items
-  choose_items:
+  false_choices:
   - AWS Trusted Advisor
   - AWS Firewall Manager
   - Amazon Guard Duty
   - AWS Resource Access Manager
-  valid_items:
+  valid_choices:
   - AWS Firewall Manager
 - item:
   title: Which of the seven design principles of security in the cloud are missing?
   type: missing_item
-  choose_items:
+  false_choices:
   - Choose the lowest price security products.
   - Apply fewer, stronger security features so they are easier to administer.
   - Choose set-it-and-forget-it security features.
-  valid_items:
+  valid_choices:
   - Implement a strong identity foundation: Implement the principle of least privilege and enforce separation of duties with appropriate authorization for each interaction with your AWS resources. Centralize identity management, and aim to eliminate reliance on long-term static credentials.
   - Enable traceability: Monitor, alert, and audit actions and changes to your environment in real time. Integrate log and metric collection with systems to automatically investigate and take action.
   - Apply security at all layers: Apply a defense in depth approach with multiple security controls. Apply to all layers (for example, edge of network, VPC, load balancing, every instance and compute service, operating system, application, and code).
