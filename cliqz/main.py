@@ -80,6 +80,8 @@ class Quiz:
     deadline = None
     index = 0
     max_questions = 200
+    max_missing = 1
+    max_choose = 1
     def __init__(self, quiz):
         self.count = len(quiz['questions'])
         if 'max_questions' in quiz: self.max_questions = quiz['max_questions']
@@ -95,6 +97,7 @@ class Quiz:
         # TODO: Make change by question type
         if('false_choices' not in question): return ""
         choice_items = question['false_choices']
+
         # leaving randomization of valid_choices in for now, pending implementation of select_valid_count
         choice_items += random.sample(question['valid_choices'], len(question['valid_choices']))
         random_choices = random.sample(choice_items, len(choice_items))
@@ -103,7 +106,11 @@ class Quiz:
 
     def get_prompt(self, question):
         choices = '\n'.join(f"{i}: {str(x)}" for i,x in enumerate(question['choices']))
-        return f"{bcolors.WARNING}{question['title']}{bcolors.ENDC}\n\n{choices}\n{bcolors.WARNING}Answer{bcolors.ENDC}"
+        if(question['type'] == "missing_item"):
+            question_title = f"{question['title']}\n{random.sample(question['valid_choices'], len(question['valid_choices']) - 1)}"
+        else:
+            question_title = question['title']
+        return f"{bcolors.WARNING}{question_title}{bcolors.ENDC}\n\n{choices}\n{bcolors.WARNING}Answer{bcolors.ENDC}"
 
     def validate(self, question, response):
         """Handle response validation based on question type"""
@@ -117,6 +124,7 @@ class Quiz:
             validated = len(extra_answers) == 0 and len(extra_validators) == 0
         elif question['type'] == "missing_item":
             response_items = [x for i,x in enumerate(question['choices']) if str(i) in response.split(',')]
+            response_items += question['valid_choices']
             print("Response Missing Items: " + json.dumps(response_items))
             extra_answers = [x for x in response_items if x not in question['valid_choices']]
             extra_validators = [x for x in question['valid_choices'] if x not in response_items]
