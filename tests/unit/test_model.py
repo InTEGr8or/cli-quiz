@@ -1,5 +1,5 @@
 import json
-from cliqz import Question
+from cliqz.question import Question
 
 class Question_T(Question):
     test_resut = None
