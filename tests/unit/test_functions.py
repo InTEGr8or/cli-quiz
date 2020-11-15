@@ -1,26 +1,41 @@
-import click
+from cliqz import Question, Quiz
 import cliqz
 from click.testing import CliRunner
+import json
+import pytest_mock
 
 runner = CliRunner()
 
-MISSING_FALSE = {
-        "title": "False Choices",
-        "type": "missing_items",
+BASE = {
+        "title": "Baseline Choices",
         "false_choices": [
             "false_choice_1",
-            "false_choice_2"
+            "false_choice_2",
+            "false_choice_3",
+            "false_choice_4",
         ],
+        "type": "missing_items",
         "valid_choices": [
             "valid_choice_1",
-            "valid_choice_2"
+            "valid_choice_2",
+            "valid_choice_3"
         ]
     }
 
-def test_false_choices():
-    #TODO: instantiate the Quiz object using pytest best practices.
-    response = cliqz.Quiz.get_false_choices(MISSING_FALSE)
-    assert True
+# BASE, but with too few false choices, expecting fewer results
+MISSING_FALSE = {**BASE, **{"title": "missing false-choices", "type":"missing_items", "false_choices": BASE['false_choices'][:2]}, "test_results": 4}
+MISSING_FALSE_REDUCED = {**BASE, **{"max_valid": 1, "false_choices": BASE['false_choices'][:2], "test_results": 3}}
+
+def test_false_choices(mocker):
+    qz = MISSING_FALSE
+    question = Question(qz)
+    assert(len(question.get_choices()) == qz['test_results'])
+
+def test_reduced_max_valid():
+    qz = MISSING_FALSE_REDUCED
+    question = Question(qz)
+    choices = question.get_choices()
+    assert(len(choices) == qz['test_results'])
 
 def test_search():
     response = runner.invoke(cliqz.search, "pract")
@@ -34,11 +49,9 @@ def test_available_tests(capsys):
     assert(len(response) > 0)
     assert("https" in response[0])
 
-def test_test(capsys):
-    cliqz.test_test()
-    out, err = capsys.readouterr()
-    assert(out == "test success\n")
-    assert(err == '')
+def test_test():
+    question = Question(MISSING_FALSE)
+    assert(question.valid == None)
 
 def test_look_up():
     assert(cliqz.look_up)
