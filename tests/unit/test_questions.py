@@ -7,23 +7,29 @@ import pytest_mock
 runner = CliRunner()
 
 BASE = {
-        "title": "Baseline Choices",
-        "false_choices": [
-            "false_choice_1",
-            "false_choice_2",
-            "false_choice_3",
-            "false_choice_4",
-        ],
-        "type": "missing_item",
-        "valid_choices": [
-            "valid_choice_1",
-            "valid_choice_2",
-            "valid_choice_3",
-            "valid_choice_4",
-            "valid_choice_5"
-        ],
-
-    }
+    "title": "Baseline Choices",
+    "false_choices": [
+        "false_choice_1",
+        "false_choice_2",
+        "false_choice_3",
+        "false_choice_4",
+    ],
+    "type": "missing_item",
+    "valid_choices": [
+        "valid_choice_1",
+        "valid_choice_2",
+        "valid_choice_3",
+        "valid_choice_4",
+        "valid_choice_5"
+    ]
+}
+NO_FALSE = {
+    "title": "Word for 'F",
+    "type": "text",
+    "valid_choices": [
+        "Foxtrot",
+    ]
+}
 
 # BASE, but with too few false choices, expecting fewer results
 MISSING_FALSE = {**BASE, **{"title": "missing false-choices", "type":"missing_item", "false_choices": BASE['false_choices'][:2]}, "test_results": 3}
@@ -33,6 +39,11 @@ def test_false_choices(mocker):
     qz = MISSING_FALSE
     question = Question(qz)
     assert(len(question.choices) == qz['test_results'])
+
+def test_no_false_choices(mocker):
+    qz = NO_FALSE
+    question = Question(qz)
+    assert(len(question.choices) == 1)
 
 def test_get_prompt():
     qz = BASE
@@ -44,13 +55,13 @@ def test_get_missing():
     qz = BASE
     question = Question(qz)
     missing = question.get_missing()
-    assert(len(missing) == question.max_options)
+    assert(len(missing) < question.max_options)
 
 def test_get_choose():
     qz = BASE
     question = Question(qz)
     choose = question.get_missing()
-    assert(len(choose) == question.max_options)
+    assert(len(choose) < question.max_options)
 
 def test_reduced_max_valid():
     qz = MISSING_FALSE_VALID_1

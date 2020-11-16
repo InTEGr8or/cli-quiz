@@ -33,9 +33,18 @@ class Question:
         self.choose_quantity = question['choose_quantity'] if 'choose_quantity' in question else self.choose_quantity
         self.max_options = question['max_options'] if 'max_options' in question else self.max_options
         self.max_valid = question['max_valid'] if 'max_valid' in question else self.max_valid
-        self.valid_choices = question['valid_choices'] #random.sample(question['valid_choices'], min([len(question['valid_choices']), self.max_valid]))
-        self.false_choices = question['false_choices'] #random.sample(question['false_choices'], min([self.max_options - self.max_valid, len(question['false_choices'])]))
+        self.valid_choices = self.__get_valid_choices(question) 
+        self.false_choices = self.__get_false_choices(question) 
         self.choices = self.__get_choices()
+
+    def __get_false_choices(self, question):
+        if(not 'false_choices' in question): return []
+        result = random.sample(question['false_choices'], min([self.max_options - self.max_valid, len(question['false_choices'])]))
+        return result
+
+    def __get_valid_choices(self, question):
+        result = random.sample(question['valid_choices'], min([len(question['valid_choices']), self.max_valid]))
+        return result
 
     def __get_choices(self):
         """
@@ -89,9 +98,13 @@ class Question:
         _choices = '\n'.join(f"{i}: {str(x)}" for i,x in enumerate(choices))
         if(self.type == "missing_item"):
             question_title = f"{bcolors.BOLD + self.title}\n\n{CONFIG['newline'].join(self.items_not_omitted)}"
-        else:
+            result = f"{bcolors.WARNING}{question_title}{bcolors.ENDC}\n\n{_choices}\n{bcolors.WARNING}Answer{bcolors.ENDC}"
+        elif(self.type == "choose_items"):
             question_title = bcolors.BOLD + self.title
-        return f"{bcolors.WARNING}{question_title}{bcolors.ENDC}\n\n{_choices}\n{bcolors.WARNING}Answer{bcolors.ENDC}"
+            result = f"{bcolors.WARNING}{question_title}{bcolors.ENDC}\n\n{_choices}\n{bcolors.WARNING}Answer{bcolors.ENDC}"
+        else: # assume 'text' type
+            result = bcolors.BOLD + bcolors.WARNING + self.title + bcolors.ENDC
+        return result
 
     def validate(self, response, choices):
         """Handle response validation based on question type"""

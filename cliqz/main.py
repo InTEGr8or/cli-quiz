@@ -84,7 +84,7 @@ def take(file_name):
         print(f"{bcolors.OKBLUE}There are {str(outstanding_count)} items remaining and {t_remaining} time remaining{bcolors.ENDC}.\n")
     valid_answers = [question for question in quiz.questions if question.valid == True]
     percent = len(valid_answers) / len(quiz.questions)
-    print(f"{bcolors.OKGREEN}You got {len(valid_answers)} out of {min([len(quiz.questions), quiz.max_questions])} questions.{bcolors.ENDC} Percent: {percent}")
+    print(f"{bcolors.OKGREEN}You got {len(valid_answers)} out of {min([len(quiz.questions), quiz.max_questions])} questions.{bcolors.ENDC} Grade: {int(percent * 100)}%")
     pass
 
 
